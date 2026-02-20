@@ -25,7 +25,7 @@ const smoothScrollTo = (elementId: string) => {
 };
 
 const hasSections = (pathname: string) =>
-  pathname === "/" || pathname === "/features" || pathname === "/pricing";
+  pathname === "/" || pathname === "/features";
 
 const navigateToHomeSection = (
   elementId: string,
@@ -44,7 +44,7 @@ const NAV_ITEMS: Array<
   | { name: string; link: string; isDropdown: true }
 > = [
   { name: "Features", link: "/#features" },
-  { name: "Pricing", link: "/#pricing" },
+  { name: "Pricing", link: "/resources/pricing" },
   { name: "Resources", link: "/resources", isDropdown: true },
 ];
 
