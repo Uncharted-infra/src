@@ -158,6 +158,7 @@ export function NavItems({ onItemClick }: NavItemsProps) {
       e.preventDefault();
       router.push(item.link);
     }
+    (e.currentTarget as HTMLElement).blur();
     onItemClick?.();
   };
 
@@ -189,7 +190,10 @@ export function NavItems({ onItemClick }: NavItemsProps) {
                             <Link
                               href={resource.href}
                               className="font-navbar-title block rounded-md px-3 py-2 text-sm hover:bg-accent"
-                              onClick={() => onItemClick?.()}
+                              onClick={(e) => {
+                                (e.currentTarget as HTMLElement).blur();
+                                onItemClick?.();
+                              }}
                             >
                               {resource.name}
                             </Link>
@@ -395,6 +399,7 @@ export function NavbarLogo() {
       onClick={(e) => {
         e.preventDefault();
         router.push("/");
+        (e.currentTarget as HTMLElement).blur();
       }}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -440,6 +445,7 @@ export function NavbarButton({
               e.preventDefault();
               router.push(href);
             }
+            (e.currentTarget as HTMLElement).blur();
           }}
           {...(props as React.AnchorHTMLAttributes<HTMLAnchorElement>)}
         >
@@ -485,6 +491,7 @@ export function Header() {
     link: string
   ) => {
     e.preventDefault();
+    const target = e.currentTarget as HTMLElement;
     const isHashLink = link.startsWith("/#");
     if (isHashLink) {
       const elementId = link.replace("/#", "");
@@ -494,6 +501,7 @@ export function Header() {
     } else {
       router.push(link);
     }
+    target.blur();
     setOpen(false);
   };
 
@@ -557,7 +565,8 @@ export function Header() {
           <Button
             variant="outline"
             className="font-navbar-title w-full"
-            onClick={() => {
+            onClick={(e) => {
+              (e.currentTarget as HTMLElement).blur();
               router.push("/login");
               setOpen(false);
             }}
@@ -566,7 +575,8 @@ export function Header() {
           </Button>
           <Button
             className="font-navbar-title w-full rounded-full"
-            onClick={() => {
+            onClick={(e) => {
+              (e.currentTarget as HTMLElement).blur();
               router.push("/signup");
               setOpen(false);
             }}
