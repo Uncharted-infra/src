@@ -26,7 +26,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} font-landing antialiased`}>
+      <body
+        className={`${inter.variable} font-landing antialiased`}
+        suppressHydrationWarning
+      >
         <ThemeProvider>
           <Header />
           <div className="pt-14">{children}</div>
