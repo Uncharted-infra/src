@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import { Header } from "@/components/home/navbar";
 import "./globals.css";
@@ -30,6 +31,7 @@ export default function RootLayout({
           <Header />
           <div className="pt-14">{children}</div>
         </ThemeProvider>
+        <Analytics />
       </body>
     </html>
   );
