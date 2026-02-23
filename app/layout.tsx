@@ -32,7 +32,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ThemeProvider>
-          <div className="cursor-none">
+          <div>
             <SmoothCursor />
             <Header />
             <div className="pt-14">{children}</div>

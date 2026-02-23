@@ -1,6 +1,8 @@
 "use client"
 import { FC, useEffect, useRef, useState } from "react"
 import { motion, useSpring } from "motion/react"
+
+const DESKTOP_MEDIA_QUERY = "(pointer: fine)"
 interface Position {
   x: number
   y: number
@@ -84,6 +86,7 @@ export function SmoothCursor({
     restDelta: 0.001,
   },
 }: SmoothCursorProps) {
+  const [isDesktop, setIsDesktop] = useState(false)
   const [isMoving, setIsMoving] = useState(false)
   const lastMousePos = useRef<Position>({ x: 0, y: 0 })
   const velocity = useRef<Position>({ x: 0, y: 0 })
@@ -103,6 +106,16 @@ export function SmoothCursor({
     damping: 35,
   })
   useEffect(() => {
+    const mq = window.matchMedia(DESKTOP_MEDIA_QUERY)
+    setIsDesktop(mq.matches)
+    const handler = () => setIsDesktop(mq.matches)
+    mq.addEventListener("change", handler)
+    return () => mq.removeEventListener("change", handler)
+  }, [])
+
+  useEffect(() => {
+    if (!isDesktop) return
+
     const updateVelocity = (currentPos: Position) => {
       const currentTime = Date.now()
       const deltaTime = currentTime - lastUpdateTime.current
@@ -156,9 +169,11 @@ export function SmoothCursor({
       window.removeEventListener("mousemove", throttledMouseMove)
       document.body.style.cursor = "auto"
       if (rafId) cancelAnimationFrame(rafId)
-
     }
-  }, [cursorX, cursorY, rotation, scale])
+  }, [isDesktop, cursorX, cursorY, rotation, scale])
+
+  if (!isDesktop) return null
+
   return (
     <motion.div
       style={{
