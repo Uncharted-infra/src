@@ -156,6 +156,7 @@ export function SmoothCursor({
       window.removeEventListener("mousemove", throttledMouseMove)
       document.body.style.cursor = "auto"
       if (rafId) cancelAnimationFrame(rafId)
+
     }
   }, [cursorX, cursorY, rotation, scale])
   return (
