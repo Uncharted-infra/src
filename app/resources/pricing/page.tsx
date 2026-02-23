@@ -1,4 +1,4 @@
-import { SectionPricing } from "@/components/home/section-pricing";
+import { PricingSection } from "./_components/PricingSection";
 
 export const metadata = {
   title: "Pricing | Uncharted",
@@ -9,7 +9,7 @@ export const metadata = {
 export default function PricingPage() {
   return (
     <div className="min-h-screen bg-background">
-      <SectionPricing />
+      <PricingSection />
     </div>
   );
 }
