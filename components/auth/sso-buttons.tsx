@@ -1,12 +1,7 @@
 "use client";
 
-import { signIn } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
-
-interface SSOButtonsProps {
-  callbackUrl?: string;
-}
 
 const GOOGLE_ICON = (
   <svg className="size-4" viewBox="0 0 24 24" aria-hidden>
@@ -38,15 +33,7 @@ const MICROSOFT_ICON = (
   </svg>
 );
 
-export function SSOButtons({ callbackUrl = "/" }: SSOButtonsProps) {
-  const handleGoogleSignIn = () => {
-    signIn("google", { callbackUrl });
-  };
-
-  const handleMicrosoftSignIn = () => {
-    signIn("microsoft-entra-id", { callbackUrl });
-  };
-
+export function SSOButtons() {
   return (
     <div className="space-y-4">
       <div className="relative">
@@ -58,18 +45,18 @@ export function SSOButtons({ callbackUrl = "/" }: SSOButtonsProps) {
       <div className="grid grid-cols-2 gap-3">
         <Button
           type="button"
-          variant="outline"
-          className="font-navbar-title"
-          onClick={handleGoogleSignIn}
+          className="font-navbar-title bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-100"
+          disabled
+          title="Wire up your auth backend to enable"
         >
           {GOOGLE_ICON}
           Google
         </Button>
         <Button
           type="button"
-          variant="outline"
-          className="font-navbar-title"
-          onClick={handleMicrosoftSignIn}
+          className="font-navbar-title bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-100"
+          disabled
+          title="Wire up your auth backend to enable"
         >
           {MICROSOFT_ICON}
           Microsoft

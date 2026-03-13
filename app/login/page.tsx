@@ -92,7 +92,7 @@ export default function LoginPage() {
           >
             Sign in
           </Button>
-          <SSOButtons callbackUrl="/" />
+          <SSOButtons />
         </form>
       </Form>
     </AuthFormLayout>

@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { ConditionalLayout } from "@/components/layout/conditional-layout";
-import { SessionProvider } from "@/components/auth/session-provider";
 import { ThemeProvider } from "@/components/ui/ThemeProvider";
 import "./globals.css";
 
@@ -32,9 +31,7 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <ThemeProvider>
-          <SessionProvider>
-            <ConditionalLayout>{children}</ConditionalLayout>
-          </SessionProvider>
+          <ConditionalLayout>{children}</ConditionalLayout>
         </ThemeProvider>
         <Analytics />
       </body>
