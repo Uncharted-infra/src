@@ -33,19 +33,25 @@ const MICROSOFT_ICON = (
   </svg>
 );
 
-export function SSOButtons() {
+interface SSOButtonsProps {
+  variant?: "signIn" | "signUp";
+}
+
+export function SSOButtons({ variant = "signIn" }: SSOButtonsProps) {
+  const label = variant === "signUp" ? "or sign up with" : "or sign in with";
+
   return (
     <div className="space-y-4">
       <div className="relative">
         <Separator />
-        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-2 text-xs text-muted-foreground font-landing">
-          or sign in with
+        <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 bg-card px-2 text-xs text-muted-foreground font-landing dark:bg-card dark:text-muted-foreground">
+          {label}
         </span>
       </div>
       <div className="grid grid-cols-2 gap-3">
         <Button
           type="button"
-          className="font-navbar-title bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-100"
+          className="font-navbar-title bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-100 dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
           disabled
           title="Wire up your auth backend to enable"
         >
@@ -54,7 +60,7 @@ export function SSOButtons() {
         </Button>
         <Button
           type="button"
-          className="font-navbar-title bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-100"
+          className="font-navbar-title bg-primary text-primary-foreground hover:bg-primary/90 disabled:opacity-100 dark:bg-primary dark:text-primary-foreground dark:hover:bg-primary/90"
           disabled
           title="Wire up your auth backend to enable"
         >

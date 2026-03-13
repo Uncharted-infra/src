@@ -122,7 +122,7 @@ export default function SignupPage() {
           >
             Create account
           </Button>
-          <SSOButtons />
+          <SSOButtons variant="signUp" />
         </form>
       </Form>
     </AuthFormLayout>
